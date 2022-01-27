@@ -107,6 +107,7 @@ int main()
 	bool paused = true;
 	// Draw some text
 	int score = 0;
+	
 
 	sf::Text messageText;
 	sf::Text scoreText;
@@ -117,31 +118,35 @@ int main()
 
 	// Set the font to our message
 	messageText.setFont(font);
+	
 	scoreText.setFont(font);
 
 	// Assign the actual message
-	messageText.setString("Press Enter to start!");
+	messageText.setString("THIS GAME DOES NOT PROMOTE DEFFORESTATION!!! Press Enter to start! ");
+	
+
 	scoreText.setString("Score = 0");
 
 	// Make it really big
-	messageText.setCharacterSize(75);
+	messageText.setCharacterSize(33);
+	
 	scoreText.setCharacterSize(100);
 
 	// Choose a color
-	messageText.setFillColor(Color::White);
-	scoreText.setFillColor(Color::White);
+	messageText.setFillColor(Color::Blue);
+    scoreText.setFillColor(Color::White);
 
 	// Position the text
 	FloatRect textRect = messageText.getLocalBounds();
+	
 
 	messageText.setOrigin(textRect.left +
 		textRect.width / 2.0f,
 		textRect.top +
 		textRect.height / 2.0f);
 
-	messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
-
-	scoreText.setPosition(20, 20);
+	messageText.setPosition(1377/ 2.0f, 1000/ 2.0f);
+   scoreText.setPosition(20, 20);
 
 	// Prepare 5 branches
 	Texture textureBranch;
@@ -219,6 +224,7 @@ int main()
 
 	while (window.isOpen())
 	{
+
 		// score ++;
 		Event event;
 		while (window.pollEvent(event))
@@ -236,6 +242,7 @@ int main()
 			}
 
 		}
+		
 
 		/*
 		****************************************
@@ -247,6 +254,7 @@ int main()
 		{
 			window.close();
 		}
+		
 
 		// Start the game
 		if (Keyboard::isKeyPressed(Keyboard::Return))
@@ -343,6 +351,7 @@ int main()
 
 				// Play a chop sound
 				chop.play();
+				
 
 			}
 
@@ -378,13 +387,17 @@ int main()
 
 				//Reposition the text based on its new size
 				FloatRect textRect = messageText.getLocalBounds();
+				
 				messageText.setOrigin(textRect.left +
 					textRect.width / 2.0f,
 					textRect.top +
 					textRect.height / 2.0f);
 
-				messageText.setPosition(1920 / 2.0f, 1080 / 2.0f);
+				messageText.setPosition(1377 / 2.0f, 1000 / 2.0f);
 
+				
+
+				
 				// Play the out of time sound
 				outOfTime.play();
 
@@ -590,13 +603,15 @@ int main()
 
 				// Center it on the screen
 				FloatRect textRect = messageText.getLocalBounds();
+				
 
 				messageText.setOrigin(textRect.left +
 					textRect.width / 2.0f,
 					textRect.top + textRect.height / 2.0f);
 
-				messageText.setPosition(1920 / 2.0f,
-					1080 / 2.0f);
+				messageText.setPosition(1377 / 2.0f,
+					1000 / 2.0f);
+				
 
 				// Play the death sound
 				death.play();
