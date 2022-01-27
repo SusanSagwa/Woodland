@@ -123,13 +123,10 @@ int main()
 
 	// Assign the actual message
 	messageText.setString("THIS GAME DOES NOT PROMOTE DEFFORESTATION!!! Press Enter to start! ");
-	
-
 	scoreText.setString("Score = 0");
 
 	// Make it really big
 	messageText.setCharacterSize(33);
-	
 	scoreText.setCharacterSize(100);
 
 	// Choose a color
