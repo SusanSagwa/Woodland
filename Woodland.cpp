@@ -11,7 +11,7 @@ void updateBranches(int seed);
 const int NUM_BRANCHES = 6;
 Sprite branches[NUM_BRANCHES];
 
-// Where is the player/branch? 
+// Where is the player/branch?
 // Left or Right
 enum class side { LEFT, RIGHT, NONE };
 side branchPositions[NUM_BRANCHES];
@@ -23,7 +23,12 @@ int main()
 	VideoMode vm(1366, 768);
 
 	// Create and open a window for the game
-	RenderWindow window(vm, "Timber!!!", Style::Fullscreen);
+	//RenderWindow window(vm, "Woodland!!!", Style::Fullscreen);
+
+	// Low res code
+	RenderWindow window(vm, "Woodland!!!");
+	View view(sf::FloatRect(0, 0, 1920, 1080));
+	window.setView(view);
 
 	// Create a texture to hold a graphic on the GPU
 	Texture textureBackground;
@@ -45,14 +50,28 @@ int main()
 	textureTree.loadFromFile("graphics/tree.png");
 	Sprite spriteTree;
 	spriteTree.setTexture(textureTree);
-	spriteTree.setPosition(683, 0);
+	spriteTree.setPosition(800, 0);
+
+	Texture textureTree2;
+	textureTree2.loadFromFile("graphics/tree2.png");
+	Sprite spriteTree2;
+	spriteTree2.setTexture(textureTree2);
+	Sprite spriteTree5;
+	spriteTree5.setTexture(textureTree2);
+	Sprite spriteTree6;
+	spriteTree6.setTexture(textureTree2);
+
+
+	spriteTree2.setPosition(300, 0);
+	spriteTree5.setPosition(1500, 0);
+	spriteTree6.setPosition(1900, 0);
 
 	// Prepare the bee
 	Texture textureBee;
 	textureBee.loadFromFile("graphics/bee.png");
 	Sprite spriteBee;
 	spriteBee.setTexture(textureBee);
-	spriteBee.setPosition(0, 800);
+	spriteBee.setPosition(0, 600);
 
 	// Is the bee currently moving?
 	bool beeActive = false;
@@ -107,7 +126,6 @@ int main()
 	bool paused = true;
 	// Draw some text
 	int score = 0;
-	
 
 	sf::Text messageText;
 	sf::Text scoreText;
@@ -118,7 +136,6 @@ int main()
 
 	// Set the font to our message
 	messageText.setFont(font);
-	
 	scoreText.setFont(font);
 
 	// Assign the actual message
@@ -126,24 +143,24 @@ int main()
 	scoreText.setString("Score = 0");
 
 	// Make it really big
-	messageText.setCharacterSize(33);
+	messageText.setCharacterSize(40);
 	scoreText.setCharacterSize(100);
 
 	// Choose a color
-	messageText.setFillColor(Color::Blue);
-    scoreText.setFillColor(Color::White);
+	messageText.setFillColor(Color::White);
+	scoreText.setFillColor(Color::White);
 
 	// Position the text
 	FloatRect textRect = messageText.getLocalBounds();
-	
 
 	messageText.setOrigin(textRect.left +
 		textRect.width / 2.0f,
 		textRect.top +
 		textRect.height / 2.0f);
 
-	messageText.setPosition(1377/ 2.0f, 1000/ 2.0f);
-   scoreText.setPosition(20, 20);
+	messageText.setPosition(2000 / 2.0f, 1000 / 2.0f);
+
+	scoreText.setPosition(20, 20);
 
 	// Prepare 5 branches
 	Texture textureBranch;
@@ -221,7 +238,6 @@ int main()
 
 	while (window.isOpen())
 	{
-
 		// score ++;
 		Event event;
 		while (window.pollEvent(event))
@@ -239,19 +255,17 @@ int main()
 			}
 
 		}
-		
 
 		/*
-		****************************************
+		**************
 		Handle the players input
-		****************************************
+		**************
 		*/
 
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
 		}
-		
 
 		// Start the game
 		if (Keyboard::isKeyPressed(Keyboard::Return))
@@ -348,7 +362,6 @@ int main()
 
 				// Play a chop sound
 				chop.play();
-				
 
 			}
 
@@ -357,9 +370,9 @@ int main()
 
 
 		/*
-		****************************************
+		**************
 		Update the scene
-		****************************************
+		**************
 		*/
 		if (!paused)
 		{
@@ -384,17 +397,13 @@ int main()
 
 				//Reposition the text based on its new size
 				FloatRect textRect = messageText.getLocalBounds();
-				
 				messageText.setOrigin(textRect.left +
 					textRect.width / 2.0f,
 					textRect.top +
 					textRect.height / 2.0f);
 
-				messageText.setPosition(1377 / 2.0f, 1000 / 2.0f);
+				messageText.setPosition(2000 / 2.0f, 1000 / 2.0f);
 
-				
-
-				
 				// Play the out of time sound
 				outOfTime.play();
 
@@ -600,15 +609,13 @@ int main()
 
 				// Center it on the screen
 				FloatRect textRect = messageText.getLocalBounds();
-				
 
 				messageText.setOrigin(textRect.left +
 					textRect.width / 2.0f,
 					textRect.top + textRect.height / 2.0f);
 
-				messageText.setPosition(1377 / 2.0f,
+				messageText.setPosition(2000 / 2.0f,
 					1000 / 2.0f);
-				
 
 				// Play the death sound
 				death.play();
@@ -620,9 +627,9 @@ int main()
 		}// End if(!paused)
 
 		 /*
-		 ****************************************
+		 **************
 		 Draw the scene
-		 ****************************************
+		 **************
 		 */
 
 		 // Clear everything from the last frame
@@ -635,6 +642,10 @@ int main()
 		window.draw(spriteCloud1);
 		window.draw(spriteCloud2);
 		window.draw(spriteCloud3);
+
+		window.draw(spriteTree2);
+		window.draw(spriteTree5);
+		window.draw(spriteTree6);
 
 		// Draw the branches
 		for (int i = 0; i < NUM_BRANCHES; i++) {
@@ -710,4 +721,3 @@ void updateBranches(int seed)
 
 
 }
-
